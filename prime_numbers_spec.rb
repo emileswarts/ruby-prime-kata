@@ -9,8 +9,8 @@ describe Primefactors do
 
 		describe "prime_factors" do
 				it "gets prime factors do" do
-						@count = 10
-						@primefactors.get_primes(@count).should == [2, 3, 5, 7, 11, 13, 17, 19, 23, 29]
+						@count = 5
+						@primefactors.get_primes(@count).should == [2, 3, 5, 7, 11]
 				end
 
 				it 'checks if a number is a prime number' do
