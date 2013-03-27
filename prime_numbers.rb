@@ -8,7 +8,7 @@ class Primefactors
 				prime_numbers = []
 				prime_index = 0
 
-				while prime_numbers.length <= n
+				while prime_numbers.length < n
 						prime_index = next_prime(prime_index)
 						prime_numbers << prime_index
 				end
@@ -39,31 +39,45 @@ end
 
 class Renderer
 
-		@separator = "|"
+		def display_table(primes)
 
-	def generate_row(primes)
-			row = []
-			primes.each do |prime|
-					row << prime
-			end
+				heading = []
+				heading << []
+				primes.each do |prime|
+						heading << prime
+				end
 
-			row
-	end
+				puts heading.join(" | ")
+				primes.length.times do |x|
+						row = [primes[x]]
+
+						primes.length.times do |y|
+								row << primes[x] * primes[y]
+						end
+				puts row.join(" | ")
+				end
+
+		end
+
+		def generate_row(prime_index)
+
+				row = []
+
+				for i in (1..10) do 
+						puts prime_index * prime_index
+				end
+				
+				row
+		end
 
 	# private 
 end
 
-num_primes = ARGV.first.to_i
-
-row = []
 @primes = Primefactors.new
 @renderer = Renderer.new
-@total_primes = @primes.get_primes(num_primes)
+@total_primes = @primes.get_primes(10)
 
- pp @total_primes.length
+@renderer.display_table(@total_primes)
 
-@total_primes.length do |prime|
-		row[prime] = @primes.get_primes(prime)
-end
+# pp @total_primes
 
- pp row
