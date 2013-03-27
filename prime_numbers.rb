@@ -41,34 +41,29 @@ class Renderer
 
 		@separator = "|"
 
-	def print_table(primes)
-			print_head(primes)
+	def generate_row(primes)
+			row = []
+			primes.each do |prime|
+					row << prime
+			end
+
+			row
 	end
 
 	# private 
-	def print_head(primes)
-			primes.each do |x|
-					puts x + @separator
-			end
-	end
-
-	def print_side
-		(2..10).each { |n| 
-			puts " #{n} "
-		}
-	end
-
-	def print_factors(factors_array)
-		factors_array.each do |factor|
-			pp factor
-		end
-
-	end
 end
 
 num_primes = ARGV.first.to_i
 
+row = []
 @primes = Primefactors.new
 @renderer = Renderer.new
 @total_primes = @primes.get_primes(num_primes)
-@renderer.print_table(@total_primes)
+
+ pp @total_primes.length
+
+@total_primes.length do |prime|
+		row[prime] = @primes.get_primes(prime)
+end
+
+ pp row
