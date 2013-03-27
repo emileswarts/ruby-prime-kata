@@ -1,10 +1,5 @@
-#!/usr/bin/env ruby
-
-require 'pp'
-
 class Primefactors
-
-		def get_primes(n = 10)
+		def get_primes(n)
 				prime_numbers = []
 				prime_index = 0
 
@@ -22,7 +17,6 @@ class Primefactors
 				(2..Math.sqrt(n)).each do |x|
 						return false if n % x == 0
 				end
-
 				return true
 		end
 
@@ -38,46 +32,24 @@ class Primefactors
 end
 
 class Renderer
-
-		def display_table(primes)
-
+		def render_table(primes)
 				heading = []
-				heading << []
+				heading << " "
+				
+				#create first blank cell
 				primes.each do |prime|
 						heading << prime
 				end
 
-				puts heading.join(" | ")
+				puts heading.join("  |  ")
 				primes.length.times do |x|
 						row = [primes[x]]
 
 						primes.length.times do |y|
 								row << primes[x] * primes[y]
 						end
-				puts row.join(" | ")
+
+						puts row.join("  |  ")
 				end
-
 		end
-
-		def generate_row(prime_index)
-
-				row = []
-
-				for i in (1..10) do 
-						puts prime_index * prime_index
-				end
-				
-				row
-		end
-
-	# private 
 end
-
-@primes = Primefactors.new
-@renderer = Renderer.new
-@total_primes = @primes.get_primes(10)
-
-@renderer.display_table(@total_primes)
-
-# pp @total_primes
-
