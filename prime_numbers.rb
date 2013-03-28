@@ -34,22 +34,26 @@ end
 class Renderer
 		def render_table(primes)
 				heading = []
-				heading << " "
+				heading << "  "
 				
 				#create first blank cell
 				primes.each do |prime|
-						heading << prime
+						 heading << prime
 				end
 
-				puts heading.join("  |  ")
+				puts heading.join(" | ")
+
 				primes.length.times do |x|
 						row = [primes[x]]
 
 						primes.length.times do |y|
-								row << primes[x] * primes[y]
+								length = (primes[x] * primes[y]).to_s.length
+
+								row << (primes[x] * primes[y]).to_s.rjust(5 - length, '* ')
+
 						end
 
-						puts row.join("  |  ")
+						puts row.join(" |")
 				end
 		end
 end

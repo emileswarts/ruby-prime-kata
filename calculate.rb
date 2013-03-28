@@ -1,4 +1,5 @@
 require './prime_numbers.rb'
+require 'pp'
 
 @prime_count = 10
 
