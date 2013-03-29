@@ -1,59 +1,61 @@
 class Primefactors
-		def get_primes(n)
-				prime_numbers = []
-				prime_index = 0
+	def get_primes(n)
+		prime_numbers = []
+		prime_index = 0
 
-				while prime_numbers.length < n
-						prime_index = next_prime(prime_index)
-						prime_numbers << prime_index
-				end
-
-				prime_numbers
+		while prime_numbers.length < n
+			prime_index = next_prime(prime_index)
+			prime_numbers << prime_index
 		end
 
-		def is_prime?(n)
-				return false if n <= 1 
+		prime_numbers
+	end
 
-				(2..Math.sqrt(n)).each do |x|
-						return false if n % x == 0
-				end
-				return true
+	def is_prime?(n)
+		return false if n <= 1 
+
+		(2..Math.sqrt(n)).each do |x|
+			return false if n % x == 0
+		end
+		return true
+	end
+
+	def next_prime(n)
+		prime_number = n + 1
+
+		until is_prime? prime_number do
+			prime_number += 1
 		end
 
-		def next_prime(n)
-				prime_number = n + 1
-
-				until is_prime? prime_number do
-						prime_number += 1
-				end
-
-				prime_number
-		end
+		prime_number
+	end
 end
 
 class Renderer
-		def render_table(primes)
-				heading = []
-				heading << "  "
-				
-				#create first blank cell
-				primes.each do |prime|
-						 heading << prime
-				end
+	def render_table(primes)
+		headings = []
+		headings << "  "
 
-				puts heading.join(" | ")
-
-				primes.length.times do |x|
-						row = [primes[x]]
-
-						primes.length.times do |y|
-								length = (primes[x] * primes[y]).to_s.length
-
-								row << (primes[x] * primes[y]).to_s.rjust(5 - length, '* ')
-
-						end
-
-						puts row.join(" |")
-				end
+		#create first blank cell
+		primes.each do |prime|
+			headings << pad_cell(prime)
 		end
+
+		puts headings.join(" | ") + " |"
+
+		primes.length.times do |x|
+			row = [[pad_cell(primes[x])]]
+
+			primes.length.times do |y|
+				row << (pad_cell(primes[x] * primes[y]))
+			end
+
+			puts row.join(" | ")
+		end
+	end
+
+	private
+	def pad_cell(content_array)
+			content_array.to_s.center(5, ' ')
+	end
 end
