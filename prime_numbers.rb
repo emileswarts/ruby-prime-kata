@@ -31,31 +31,3 @@ class Primefactors
 	end
 end
 
-class Renderer
-	def render_table(primes)
-		headings = []
-		headings << "  "
-
-		#create first blank cell
-		primes.each do |prime|
-			headings << pad_cell(prime)
-		end
-
-		puts headings.join(" | ") + " |"
-
-		primes.length.times do |x|
-			row = [[pad_cell(primes[x])]]
-
-			primes.length.times do |y|
-				row << (pad_cell(primes[x] * primes[y]))
-			end
-
-			puts row.join(" | ")
-		end
-	end
-
-	private
-	def pad_cell(content_array)
-			content_array.to_s.center(5, ' ')
-	end
-end
