@@ -1,5 +1,6 @@
 require 'rspec'
 require File.dirname(__FILE__) + '/prime_numbers.rb'
+require File.dirname(__FILE__) + '/renderer.rb'
 
 describe Primefactors do
 
